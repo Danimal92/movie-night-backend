@@ -23,9 +23,11 @@ class MoviesController < ApplicationController
     def get_similar_movies 
 
         movie = Movie.find(params[:id])
-        similar_movies = movie.similar_items.map(&:similarity)
+        similar_movies = movie.similar_items(n_results: 1)
+        similar_ranks = movie.similar_items.map(&:similarity)
         render :json => similar_movies
-
+        # render :json => similar_ranks
+        
     end
 
 
