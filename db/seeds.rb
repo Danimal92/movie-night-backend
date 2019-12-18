@@ -13,12 +13,12 @@ client = Omdb::Api::Client.new do |config|
     config.api_key = 'b345e258'
 end
 
-100.times do 
+50.times do 
     User.create(email: Faker::Internet.unique.email, password: '1')
 end
 
-50.times do 
-    movie = client.find_by_title(Faker::Creature::Animal.unique.name, type: 'movie')
+75.times do 
+    movie = client.find_by_title(Faker::Creature::Animal.unique.name, type: 'movie', plot: 'full')
     # byebug
     imdbIDS = []
     Movie.all.each{|m| imdbIDS << m.imdbID}
@@ -27,8 +27,8 @@ end
     end
 end
 
-2000.times do 
-    Usermovie.create(liked: true, user_id: rand(1..100), movie_id: rand(1..50))
+500.times do 
+    Usermovie.create(liked: true, user_id: rand(1..50), movie_id: rand(1..100))
 end
 
 

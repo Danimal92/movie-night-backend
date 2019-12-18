@@ -1,5 +1,10 @@
-
+require 'omdb/api'
 class MoviesController < ApplicationController
+
+    
+
+
+
     def index
         movies = Movie.all
         render :json => movies
@@ -23,20 +28,30 @@ class MoviesController < ApplicationController
     def get_similar_movies 
 
         movie = Movie.find(params[:id])
-        similar_movies = movie.similar_items(n_results: 1)
+        similar_movies = movie.similar_items(n_results: 3)
         similar_ranks = movie.similar_items.map(&:similarity)
         render :json => similar_movies
         # render :json => similar_ranks
         
     end
 
+    # def search_movies
+    #     client = Omdb::Api::Client.new do |config|
+    #         config.api_key = 'b345e258'
+    #     end
+
+    #     client.search(params[:title])
+
+    # end
+
 
 
 
     def create
-        user = User.find(params[:user_id])
-        user.save
-        render :json => movie
+        movie = Movie.new(set_param)
+        if movie.save
+            render :json => movie
+        end
     end
 
     def destroy

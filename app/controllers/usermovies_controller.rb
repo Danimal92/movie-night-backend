@@ -5,6 +5,17 @@ class UsermoviesController < ApplicationController
         render :json => usermovie
     end
 
+    def new
+        usermovie = Usermovie.new()
+
+    
+    end
+
+    def index 
+        usermovies = Usermovie.all
+        render :json => usermovies
+    end
+
     def create
         usermovie = Usermovie.new(set_param)
         if usermovie.save
@@ -14,8 +25,15 @@ class UsermoviesController < ApplicationController
 
 
     def destroy
-        usermovie = Usermovie.find(params[:id])
+        usermovie = Usermovie.find_by(user_id: params[:user_id], movie_id: params[:movie_id])
+        # byebug
         usermovie.destroy
+    end
+
+    private
+
+    def set_param
+        params.require(:usermovie).permit(:user_id,:liked,:movie_id)
     end
     
 end
