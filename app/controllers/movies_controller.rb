@@ -44,6 +44,11 @@ class MoviesController < ApplicationController
 
     # end
 
+    def find_by_imdbID
+        movie = Movie.find_by(imdbID: params[:imdbID])
+        # byebug
+        render :json => movie
+    end
 
 
 
@@ -51,6 +56,8 @@ class MoviesController < ApplicationController
         movie = Movie.new(set_param)
         if movie.save
             render :json => movie
+        else
+            flash[:message] = "MOVIE IS NOT UNIQUE"
         end
     end
 
