@@ -1,24 +1,10 @@
-# README
+## Movie Night 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A recommender system for movies with login, registration, and like/dislike functionality. Users will be brought recommendations based on other profiles. 
 
-Things you may want to cover:
+- UI created with React JS, Semantic UI, and Material UI
+- Recommender system implemented with simple_recommender ruby gem on backend
+- Fetches for movies made to OMDB API 
+- Authentication/Authorization calls made to custom Rails API backend with JWT Authorization
+- Users, movies, and user's liked movies stored in PostgreSQL database 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
